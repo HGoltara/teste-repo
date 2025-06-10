@@ -1,0 +1,597 @@
+/* Reset básico */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Variáveis de tema */
+:root {
+  --color-primary: #1abc9c;
+  --color-primary-dark: #16a085;
+  --color-text-light: #f5f5f5;
+  --color-text-dark: #000000;
+  --color-bg-light: #f5f7fa;
+  --color-bg-dark: #1e1e1e;
+  --color-section-bg-light: #fff;
+  --color-section-bg-dark: #2a2a2a;
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-dark: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Body e modo escuro */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  padding: 20px;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg,
+    rgba(200, 200, 200, 0.2),
+    rgba(255, 255, 255, 0.1)
+  ) fixed;
+}
+
+/* Tema alternativo com classes body.light e body.dark */
+body.light {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --primary-color: #4f46e5;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+body.dark {
+  --bg-color: #111111;
+  --text-color: #000000;
+  --primary-color: #4f46e5;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Header e navegação */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  position: relative;
+}
+
+.nav-main ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-main a {
+  text-decoration: none;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Responsivo: aplica a partir de 768px para baixo */
+@media (max-width: 768px) {
+  .nav-main ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 1rem;
+    background: #333;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .nav-main ul.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: inline-block;
+  }
+}
+
+/* Seções gerais */
+section {
+  max-width: 1000px;
+  margin: 40px auto;
+  background-color: var(--color-section-bg-light);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  transition: transform var(--transition-speed) ease, background-color var(--transition-speed) ease;
+  will-change: transform;
+  cursor: default;
+  /* Evita "jumps" ao transformar */
+}
+
+body.dark-mode section {
+  background-color: var(--color-section-bg-dark);
+  box-shadow: none;
+}
+
+section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(26, 188, 156, 0.25);
+}
+
+/* Títulos */
+h1, h2 {
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  border-bottom: 3px solid var(--color-primary);
+  display: inline-block;
+  padding-bottom: 6px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  user-select: none;
+}
+
+body.dark-mode h1,
+body.dark-mode h2 {
+  color: var(--color-text-light);
+}
+
+/* Parágrafos */
+p {
+  font-size: 1.125rem; /* 18px */
+  margin-bottom: 1rem;
+  line-height: 1.65;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  word-break: break-word;
+}
+
+/* About section layout */
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.about-container {
+  flex: 1 1 60%;
+}
+
+.about-container p strong {
+  color: #005a99;
+  font-weight: 700;
+}
+
+/* Imagem */
+.imagem {
+  flex: 1 1 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagem img {
+  max-width: 250px;
+  width: 100%;
+  border-radius: 50%;
+  box-shadow: var(--shadow-dark);
+  transition: transform var(--transition-speed) ease;
+  object-fit: cover;
+  user-select: none;
+}
+
+.imagem img:hover,
+.imagem img:focus {
+  transform: scale(1.07);
+  outline: none;
+}
+
+/* Social Icons */
+.social-icons {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.social-icons li a {
+  text-decoration: none;
+  color: var(--color-text-dark);
+  font-size: 1rem;
+  padding: 12px 20px;
+  border: 2px solid var(--color-text-dark);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all var(--transition-speed) ease;
+  user-select: none;
+}
+
+.social-icons li a:hover,
+.social-icons li a:focus {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+body.dark-mode .social-icons li a {
+  color: var(--color-text-light);
+  border-color: var(--color-text-light);
+}
+
+body.dark-mode .social-icons li a:hover,
+body.dark-mode .social-icons li a:focus {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: #fff;
+}
+
+.social-icons li a i {
+  font-size: 1.2rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 60px;
+  padding: 20px;
+  font-size: 0.9rem;
+  background-color: #2c3e50;
+  color: #fff;
+  border-top: 5px solid var(--color-primary);
+  transition: background-color var(--transition-speed) ease;
+  user-select: none;
+}
+
+body.dark-mode footer {
+  background-color: #1c1c1c;
+  color: #ddd;
+}
+
+/* Botão Voltar ao Topo */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 12px 16px;
+  font-size: 1.4rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  transition: opacity var(--transition-speed) ease;
+  box-shadow: 0 4px 8px rgba(26, 188, 156, 0.6);
+  z-index: 1000;
+}
+
+body.dark-mode #backToTop {
+  background-color: var(--color-primary-dark);
+}
+
+/* Botão alternar tema */
+#toggleTheme {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  font-size: 1.2rem;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease;
+  z-index: 1100;
+  box-shadow: 0 4px 8px rgba(26, 188, 156, 0.6);
+}
+
+body.dark-mode #toggleTheme {
+  background-color: var(--color-primary-dark);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-container,
+  .imagem {
+    flex: none;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .imagem {
+    margin-top: 20px;
+  }
+
+  .social-icons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .social-icons li a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-main ul {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* Navegação principal */
+.nav-main {
+  max-width: 1000px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+}
+
+.nav-main ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  user-select: none;
+}
+
+.nav-main ul li a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  padding: 8px 15px;
+  border-radius: 6px;
+  transition: background-color var(--transition-speed) ease;
+  border: 2px solid transparent;
+  user-select: none;
+}
+
+.nav-main ul li a:hover,
+.nav-main ul li a.active,
+.nav-main ul li a:focus {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary-dark);
+  outline: none;
+}
+
+body.dark-mode .nav-main ul li a {
+  color: #ddd;
+}
+
+body.dark-mode .nav-main ul li a:hover,
+body.dark-mode .nav-main ul li a.active,
+body.dark-mode .nav-main ul li a:focus {
+  background-color: var(--color-primary-dark);
+  border-color: #13876a;
+}
+
+/* Seção Contato */
+.contato-section {
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: var(--color-section-bg-light);
+  padding: 30px 25px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  transition: background-color var(--transition-speed) ease;
+}
+
+body.dark-mode .contato-section {
+  background-color: var(--color-section-bg-dark);
+}
+
+/* Container dentro da seção contato */
+.contato-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contato-section h2 {
+  color: #1a1a1a;
+  margin-bottom: 15px;
+  border-bottom: 3px solid var(--color-primary);
+  padding-bottom: 6px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+body.dark-mode .contato-section h2 {
+  color: var(--color-text-light);
+}
+
+.contato-section p {
+  font-size: 1.125rem;
+  color: var(--color-text-dark);
+  line-height: 1.6;
+}
+
+body.dark-mode .contato-section p {
+  color: #ddd;
+}
+
+/* Formulário */
+form#contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+form#contactForm label {
+  font-weight: 600;
+  color: var(--color-text-dark);
+  user-select: none;
+}
+
+body.dark-mode form#contactForm label {
+  color: var(--color-text-light);
+}
+
+form#contactForm input,
+form#contactForm textarea {
+  padding: 12px 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+  background-color: #fafafa;
+  color: var(--color-text-dark);
+}
+
+body.dark-mode form#contactForm input,
+body.dark-mode form#contactForm textarea {
+  background-color: #444;
+  border-color: #555;
+  color: var(--color-text-light);
+}
+
+form#contactForm input:focus,
+form#contactForm textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: #fff;
+  color: var(--color-text-dark);
+  box-shadow: 0 0 8px var(--color-primary);
+}
+
+body.dark-mode form#contactForm input:focus,
+body.dark-mode form#contactForm textarea:focus {
+  background-color: #2a2a2a;
+  color: var(--color-text-light);
+}
+
+/* Botão Enviar */
+form#contactForm button[type="submit"] {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  user-select: none;
+}
+
+form#contactForm button[type="submit"]:hover,
+form#contactForm button[type="submit"]:focus {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 4px 15px var(--color-primary);
+  outline: none;
+}
+
+/* Responsividade extra */
+@media (max-width: 480px) {
+  .contato-section {
+    margin: 20px 15px;
+    padding: 20px 15px;
+  }
+}
+
+/* Fade-in para seções */
+.fade-init {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Inputs com foco para acessibilidade */
+input.focused, textarea.focused {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 8px var(--color-primary);
+  outline: none;
+  transition: box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+/* Links menu com clique animado */
+.nav-main a.clicked {
+  color: var(--color-primary-dark);
+  transition: color var(--transition-speed) ease;
+  user-select: none;
+}
+
+/* Botão do WhatsApp */
+	.whatsapp-button {
+		position: fixed;
+		bottom: 39%;
+		right: 7px;
+		z-index: 99999;
+		width: 105px;
+		text-align: center;
+		line-height: 1;
+		animation: scaleUp 1s infinite;
+		background: #139f01;
+		border-radius: 10px;
+	}
+	@keyframes scaleUp {
+		0% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.05);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+	
+	.whatsapp-button a:hover {
+		background-color: #128C7E; 
+	}
+	.whatsapp-button a {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		padding: 5px 0;
+	}
+	.whatsapp-button span {
+		color: #fff;
+		text-align: center;
+		font-size: 15px;
+		font-weight: 700;
+	}
+	.whatsapp-button p {
+		color: #fff;
+		font-size: 13px;
+		margin: 0;
+		line-height: 1.1;
+	}
+	.whatsapp-button img {
+		object-fit: contain;
+		width: 24px;
+	}
+
